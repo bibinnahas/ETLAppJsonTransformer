@@ -1,0 +1,5 @@
+{ "event_id" : 893479324983546, "user" : { "session_id" : "564561", "id" : 56456 , "ip" : "111.222.333.4" }, "action" : "page_view", "url" : "https://www.hipages.com.au/articles", "timestamp" : "02/02/2017 20:22:00"}
+{ "event_id : "349824093287032", "user" : { "session_id" : "564562", "id" : 56456 , "ip" : "111.222.333.5" }, "action" : "page_view", "url" : "https://www.hipages.com.au/connect/sfelectrics/service/190625", "timestamp" : "02/02/2017 20:23:00"}
+{ "event_id" : "324872349721534", "user" : { "session_id" : "564563", "id" : "56456" , "ip" : "111.222.33.66" }, "action" : "page_view", "url" : "https://www.hipages.com.au/get_quotes_simple?search_str=sfdg", "timestamp" : "02/02/2017 20:26:00"}
+{ "event_id" : "893479324983547", "user" : { "session_id" : "565115", "id" : 56798 , "ip" : "111.222.333.4" }, "action" : "page_view", "url" : "https://www.hipages.com.au/articles", "timestamp" : "01/03/2017 20:21:00"}
+{ "event_id" : "349824093287033", "user" : { "session_id" : "565116", "id" : 56798 , "ip" : "111.222.333.5" }, "action" : "page_view", "url" : "https://www.hipages.com.au/connect/sfelectrics/service/190625", "timestamp" : "02/02/2017 20:12:34"}
