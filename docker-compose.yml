@@ -1,0 +1,66 @@
+version: "2.2"
+services:
+  client: 
+    build: ./
+    command:
+      [
+        "$SPARK_HOME/bin/spark-submit",
+        "--class", "com.hipages.jsontransformer.entry.ETLMainApp",
+        "/opt/jars/HipagesJsonTransformerETL-assembly-1.0.jar",
+        "/opt/input/source_event_data.json",
+        "/opt/output/",
+        "/opt/schema/source_data_schema.json",
+        "validate"
+      ]
+    depends_on:
+      - master
+      - worker 
+    environment:
+      SOURCE_PATH: ./data/input/source_event_data.json}
+      TARGET_DIR: ./data/output/}
+    volumes:
+      - ./data:/usr/spark-2.4.0/data
+
+  master:
+    image: gettyimages/spark
+    command: bin/spark-class org.apache.spark.deploy.master.Master -h master
+    hostname: master
+    environment:
+      MASTER: spark://master:7077
+      SPARK_CONF_DIR: /conf
+      SPARK_PUBLIC_DNS: localhost
+    expose:
+      - 7001
+      - 7002
+      - 7003
+      - 7004
+      - 7005
+      - 7077
+      - 6066
+    ports:
+      - 8080:8080
+    volumes:
+      - ./data:/usr/spark-2.4.0/data
+
+  worker:
+    image: gettyimages/spark
+    command: bin/spark-class org.apache.spark.deploy.worker.Worker spark://master:7077
+    hostname: worker
+    environment:
+      SPARK_CONF_DIR: /conf
+      SPARK_WORKER_CORES: 2
+      SPARK_WORKER_MEMORY: 1g
+      SPARK_WORKER_PORT: 8881
+      SPARK_WORKER_WEBUI_PORT: 8081
+      SPARK_PUBLIC_DNS: localhost
+    links:
+      - master
+    expose:
+      - 7012
+      - 7013
+      - 7014
+      - 7015
+      - 8881
+    ports:
+      - 8081:8081
+

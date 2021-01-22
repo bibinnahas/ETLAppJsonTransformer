@@ -1,0 +1,77 @@
+{
+  "$id": "com.hipages.schemas.source_data_schema",
+  "type": "object",
+  "definitions": {},
+  "$schema": "http://iglucentral.com/schemas/com.snowplowanalytics.self-desc/schema/jsonschema/1-0-0#",
+  "properties": {
+    "event_id": {
+      "$id": "/properties/event_id",
+      "type": "string",
+      "title": "The Event_id Schema ",
+      "default": "0",
+      "examples": [
+        "893479324983546"
+      ]
+    },
+    "user": {
+      "$id": "/properties/user",
+      "type": "object",
+      "properties": {
+        "session_id": {
+          "$id": "/properties/user/properties/session_id",
+          "type": "string",
+          "title": "The Session_id Schema ",
+          "default": "0",
+          "examples": [
+            "564561"
+          ]
+        },
+        "id": {
+          "$id": "/properties/user/properties/id",
+          "type": "string",
+          "title": "The Id Schema ",
+          "default": "",
+          "examples": [
+            "56456"
+          ]
+        },
+        "ip": {
+          "$id": "/properties/user/properties/ip",
+          "type": "string",
+          "title": "The Ip Schema ",
+          "default": "",
+          "examples": [
+            "111.111.111.4"
+          ]
+        }
+      }
+    },
+    "action": {
+      "$id": "/properties/action",
+      "type": "string",
+      "title": "The Action Schema ",
+      "default": "",
+      "examples": [
+        "page_view", "claim", "button_click"
+      ]
+    },
+    "url": {
+      "$id": "/properties/url",
+      "type": "string",
+      "title": "The Url Schema ",
+      "default": "",
+      "examples": [
+        "https://www.homeimprovementpages.com.au/articles"
+      ]
+    },
+    "timestamp": {
+      "$id": "/properties/timestamp",
+      "type": "string",
+      "title": "The Timestamp Schema ",
+      "default": "",
+      "examples": [
+        "02/02/2017 20:22:00"
+      ]
+    }
+  }
+}
