@@ -6,7 +6,7 @@ import org.apache.spark.sql.functions.{col, expr, split}
 /**
  * Accepts input dataframe as an argument and transforms it to table format
  * {user_id 	time_stamp 	url_level1 	url_level2 	url_level3 	activity}
- * ref:- https://stackoverflow.com/questions/46353360/use-length-function-in-substring-in-spark
+ *
  */
 object TransformationUserActivity {
 
@@ -25,6 +25,7 @@ object TransformationUserActivity {
         col("full_url").getItem(3).alias("url_level2"),
         col("full_url").getItem(4).alias("url_level3"),
         col("action").alias("activity"))
+//    ref:- https://stackoverflow.com/questions/46353360/use-length-function-in-substring-in-spark
       .withColumn("url_level1", expr("substring(url_level1_full, 5, length(url_level1_full) - 7)"))
       .select(
         col("user_id"),

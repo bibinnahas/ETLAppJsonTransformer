@@ -26,7 +26,7 @@ class ActivityTransformationTestSuccessScenario extends FunSuite with SharedSpar
     val spark: SparkSession = SparkSession.builder.master("local").getOrCreate
     import spark.implicits._
 
-    val inputFile = "/home/thesnibibin/Desktop/hipages/ETLAppJsonTransformer/src/test/resources/source_event_data_1.json"
+    val inputFile = "/home/thesnibibin/Desktop/hipages/ETLAppJsonTransformer/src/test/resources/source_event_data_1_record.json"
     val schemaFile = "/home/thesnibibin/Desktop/hipages/ETLAppJsonTransformer/src/test/resources/source_data_schema.json"
 
     val schema = DataHandlingUtil.getSchema(schemaFile)
@@ -53,7 +53,7 @@ class ActivityTransformationTestSuccessScenario extends FunSuite with SharedSpar
     import spark.implicits._
 
     val inputFile = "/home/thesnibibin/Desktop/hipages/ETLAppJsonTransformer/src/test/resources/source_event_data_malformed_corrupt.json"
-    val schemaFile = "/home/thesnibibin/Desktop/hipages/ETLAppJsonTransformer/src/test/resources/source_data_schema_updated.json"
+    val schemaFile = "/home/thesnibibin/Desktop/hipages/ETLAppJsonTransformer/src/test/resources/source_data_schema_updated_datatype.json"
 
     val schema = DataHandlingUtil.getSchema(schemaFile)
     val inputDf = spark
@@ -80,7 +80,7 @@ class ActivityTransformationTestSuccessScenario extends FunSuite with SharedSpar
     import spark.implicits._
 
     val inputFile = "/home/thesnibibin/Desktop/hipages/ETLAppJsonTransformer/src/test/resources/source_event_data_err.json"
-    val schemaFile = "/home/thesnibibin/Desktop/hipages/ETLAppJsonTransformer/src/test/resources/source_data_schema_updated.json"
+    val schemaFile = "/home/thesnibibin/Desktop/hipages/ETLAppJsonTransformer/src/test/resources/source_data_schema_updated_datatype.json"
 
     val schema = DataHandlingUtil.getSchema(schemaFile)
     val invalidDf = AuditCountsUtil.findInvalid(inputFile, schema, spark).collect()
@@ -101,7 +101,7 @@ class ActivityTransformationTestSuccessScenario extends FunSuite with SharedSpar
     import spark.implicits._
 
     val inputFile = "/home/thesnibibin/Desktop/hipages/ETLAppJsonTransformer/src/test/resources/source_event_data_err.json"
-    val schemaFile = "/home/thesnibibin/Desktop/hipages/ETLAppJsonTransformer/src/test/resources/source_data_schema_updated.json"
+    val schemaFile = "/home/thesnibibin/Desktop/hipages/ETLAppJsonTransformer/src/test/resources/source_data_schema_updated_datatype.json"
 
     val schema = DataHandlingUtil.getSchema(schemaFile)
     val invalidDf = AuditCountsUtil.findCorrupt(inputFile, schema, spark).collect()
@@ -120,7 +120,7 @@ class ActivityTransformationTestSuccessScenario extends FunSuite with SharedSpar
     val spark: SparkSession = SparkSession.builder.master("local").getOrCreate
     import spark.implicits._
 
-    val inputFile = "/home/thesnibibin/Desktop/hipages/ETLAppJsonTransformer/src/test/resources/source_event_data_1.json"
+    val inputFile = "/home/thesnibibin/Desktop/hipages/ETLAppJsonTransformer/src/test/resources/source_event_data_1_record.json"
     val schemaFile = "/home/thesnibibin/Desktop/hipages/ETLAppJsonTransformer/src/test/resources/source_data_schema.json"
 
     val schema = DataHandlingUtil.getSchema(schemaFile)

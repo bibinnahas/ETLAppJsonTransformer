@@ -32,17 +32,17 @@ The Application in its current state assumes the below
 - **Input File Path** - Source_event_data.json (events json created from User Action Events)
 - **Output File Path** - Target path for saving the structured output user activity tables
 - **Schema File Path** - Source_data_schema.json (Json schema file path)
-- **validate function** - Supply a fourth argument as "validate" or "no". Fourth argument keyed in as  "validate", will give a detailed picture on any errors in the input json. Errors include, but is not limited to
+- **Validate function** - Supply a fourth argument as "validate" or "no". Fourth argument keyed in as  "validate", will give a detailed picture on any errors in the input json. Errors include, but is not limited to
    * Malformed Json
    * Datatyping errors
    * Incomplete/Corrupt json etc
 # Instructions on Execution
 Can be executed via below 3 means
 - Using run_job.sh - The run_job is present in the scripts folder.
-  * Usage: **./run_job.sh <path_to_jar> <path_to_input_json> <path_to_target_folder> <path_to_schema_json> <validate/no>**
+  * Usage: **./run_job.sh** <path_to_jar> <path_to_input_json> <path_to_target_folder> <path_to_schema_json> <validate/no>
 - Using Spark submit - Directly calling the spark job. (Assumes SPARK_HOME is set in your environment)
-  * Usage: **./bin/spark-submit --class com.hipages.jsontransformer.entry.ETLMainApp --deploy-mode client --master local[*] <path_to_HipagesJsonTransformerETL-assembly-1.0.jar> <path_to_input_json> <path_to_target_folder> <path_to_schema_json>**
-- 
+  * Usage: **./bin/spark-submit** --class com.hipages.jsontransformer.entry.ETLMainApp --deploy-mode client --master local[*] <path_to_HipagesJsonTransformerETL-assembly-1.0.jar> <path_to_input_json> <path_to_target_folder> <path_to_schema_json>
+- Using intellij - Run main class with arguments edited in to configuration
 # Possible Future Enhancements
 Given more time, we can think of adding the below functionalities
 - Support for more input file formats like csv, xml etc. The ingestion method should we enhanced to accept file types with or without a schema.
