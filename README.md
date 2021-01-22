@@ -37,9 +37,12 @@ The Application in its current state assumes the below
    * Datatyping errors
    * Incomplete/Corrupt json etc
 # Instructions on Execution
-- 1
-- 2
-- 3
+Can be executed via below 3 means
+- Using run_job.sh - The run_job is present in the scripts folder.
+  * Usage: **./run_job.sh <path_to_jar> <path_to_input_json> <path_to_target_folder> <path_to_schema_json> <validate/no>**
+- Using Spark submit - Directly calling the spark job. (Assumes SPARK_HOME is set in your environment)
+  * Usage: **./bin/spark-submit --class com.hipages.jsontransformer.entry.ETLMainApp --deploy-mode client --master local[*] <path_to_HipagesJsonTransformerETL-assembly-1.0.jar> <path_to_input_json> <path_to_target_folder> <path_to_schema_json>**
+- 
 # Possible Future Enhancements
 Given more time, we can think of adding the below functionalities
 - Support for more input file formats like csv, xml etc. The ingestion method should we enhanced to accept file types with or without a schema.
@@ -48,6 +51,6 @@ Given more time, we can think of adding the below functionalities
 - Ability to write structured data to a relational DB from K8s
 - Additional configs for dev, test, preprod and prod env set ups
 - A dedicated scheduler to run the job like Airflow or Autosys
-- Supplying Dataframe queries as separate parameterised sql files so that any person having sql skills can work on Big Data 
+- Supplying Dataframe queries as separate parameterised configurable sql files so that any person having sql skills can work on Big Data 
 # Portability and Scaling
 The Application is running on Spark which makes itself a highly scalable app with the correct ideal set up. In addition, implementing the same app on k8s will introduce additional benefits of availability, scalability and ease of deployment
