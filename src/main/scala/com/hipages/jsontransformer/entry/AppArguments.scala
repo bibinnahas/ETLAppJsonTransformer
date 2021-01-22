@@ -2,9 +2,9 @@ package com.hipages.jsontransformer.entry
 
 /**
  * Reading the input arguments as arguments in command line
- * the order of usage is input_file_path, output_file_path, schema_file_path
+ * the order of usage is input_file_path, output_file_path, schema_file_path, validate/no
  *
- * @param argumentsToApp : All arguments as a tuple
+ * @param argumentsToApp : Receive arguments as tuple
  */
 case class AppArguments(argumentsToApp: (String, String, String, String)) {
 
@@ -14,6 +14,4 @@ case class AppArguments(argumentsToApp: (String, String, String, String)) {
   val validator: String = argumentsToApp._4
 
   (inputFile, targetFolder, schemaFile, validator)
-
 }
-

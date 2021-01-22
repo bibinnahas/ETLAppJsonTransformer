@@ -8,21 +8,20 @@ import org.apache.log4j.{Level, Logger}
 
 /**
  * Main Application code.
- * The flow of the ETL for transforming events json after
- * applying constraints schema starts here
+ * Calls methods to transform input json to structured form
  */
 
 object ETLMainApp {
 
-  /**
-   * Check number of arguments as 3 or 4 (4th argument is optional
-   * and should be given only if the data is to be validated)
-   */
   val log: Logger = Logger.getLogger(getClass)
   log.setLevel(Level.INFO)
 
   def main(args: Array[String]): Unit = {
 
+    /**
+     * Check number of arguments.
+     * To be enhanced:- to use scala parser using pattern matching
+     */
     if (args.length != 4) {
       log.error(s"You have supplied ${args.length} arguments")
       log.error("Usage is wrong. Please supply 4 arguments as below.")
@@ -60,7 +59,6 @@ object ETLMainApp {
         .option("mode", AppConstants.correctiveActionNormal)
         .json(inputFile)
 
-
       val activityTransformedDf = TransformationUserActivity.transformDf(inputDf)
       activityTransformedDf.cache()
 
@@ -71,4 +69,3 @@ object ETLMainApp {
     }
   }
 }
-

@@ -2,22 +2,25 @@ package com.hipages.jsontransformer.utils
 
 import org.apache.spark.sql.{DataFrame, SaveMode, SparkSession}
 import org.apache.spark.sql.types.StructType
-import org.slf4j.LoggerFactory
 import org.zalando.spark.jsonschema.SchemaConverter
-import org.slf4j.{Logger, LoggerFactory}
+import org.apache.log4j.{Level, Logger}
 
 object DataHandlingUtil {
 
-  val log: Logger = LoggerFactory.getLogger(getClass)
+  val log: Logger = Logger.getLogger(getClass)
+  log.setLevel(Level.INFO)
 
   /**
-   * if fourth argument is "validate", the below method will be called which will validate the input data
-   * @param validator: Fourth (optional) argument to spark-submit
-   * @param inputFile: Input path
-   * @param schema: schema.json file
-   * @param outputFile: output path
+   * if fourth argument is "validate", the below method will be called which
+   * will validate the input data and writes the invalid data, if any, to disk
+   *
+   * @param validator  : Fourth argument to spark-submit ("validate"/"no")
+   * @param inputFile  : Input path
+   * @param schema     : schema.json file
+   * @param outputFile : output path
    */
-  def validateInput(validator:String, inputFile: String, schema: StructType, outputFile: String, spark: SparkSession): Unit = {
+  def validateInput(validator: String, inputFile: String, schema: StructType, outputFile: String, spark: SparkSession): Unit = {
+
     if (validator == "validate") {
       val invalidDf = AuditCountsUtil.findInvalid(inputFile, schema, spark)
       writeToFileAsCsv(invalidDf, outputFile + "/invalid/malformed")
@@ -26,17 +29,16 @@ object DataHandlingUtil {
       writeToText(corruptDf.toDF(), outputFile + "/invalid/corrupt")
       log.info("Json input validated for corrupt/malformed/invalid items")
     }
-    else println("*** Count Validation Skipped ***")
+    else log.info("*** Count Validation Skipped ***")
   }
 
   /**
    * Get/Validate schema from Zalando library
-   * https://github.com/zalando-incubator/spark-json-schema
+   * ref:- https://github.com/zalando-incubator/spark-json-schema
    *
-   * @param schemaFile: String value of schem json
-   * @return schema
+   * @param schemaFile : String value of schem json
+   * @return: schema as StructType
    */
-
   def getSchema(schemaFile: String): StructType = {
 
     val jsonValidation = readSchema(schemaFile)
@@ -46,8 +48,8 @@ object DataHandlingUtil {
   /**
    * Read schema string from input schema file
    *
-   * @param schemaPath: Schema.json content as String
-   * @return
+   * @param schemaPath : Schema.json content as String
+   * @return: schema as String
    */
   def readSchema(schemaPath: String): String = {
 
@@ -58,11 +60,11 @@ object DataHandlingUtil {
   }
 
   /**
-   * Receives Dataframe & outputh path as arguments and writes the DF as a csv to the output path
-   * CSV format
+   * Receives Dataframe & Outputh path as arguments and writes the dataframe to this path
+   * format: CSV
    *
    * @param df         : The dataframe to write to file
-   * @param outputPath : Path to write the file to
+   * @param outputPath : Path to write the dataframe to
    */
   def writeToFileAsCsv(df: DataFrame, outputPath: String) {
 
@@ -74,11 +76,11 @@ object DataHandlingUtil {
   }
 
   /**
-   * Receives Dataframe & outputh path as arguments and writes the DF as a csv to the output path
-   * text format
+   * Receives Dataframe & Outputh path as arguments and writes the dataframe to this path
+   * tformat: text
    *
    * @param df         : The dataframe to write to file
-   * @param outputPath : Path to write the file to
+   * @param outputPath : Path to write dataframe file to
    */
   def writeToText(df: DataFrame, outputPath: String) {
 

@@ -7,14 +7,16 @@ import org.apache.spark.sql.functions.{col, udf}
 import org.apache.spark.sql.types.StructType
 
 /**
- * If validate option selected in command line, this method validates the count and finds out if
- * any records was dropped from processing
+ * If validate option is selected in command line as "validate",
+ * this method validates the input json and writes malformed/invalid
+ * records to disk. However, these records are dropped from further processing
+ * in main dataframe
  */
 object AuditCountsUtil {
 
   /**
-   * Converts struct to string type
-   * https://stackoverflow.com/questions/40426106/spark-2-0-x-dump-a-csv-file-from-a-dataframe-containing-one-array-of-type-string
+   * Converts struct to string type to be able to write as file
+   * ref:- https://stackoverflow.com/questions/40426106/spark-2-0-x-dump-a-csv-file-from-a-dataframe-containing-one-array-of-type-string
    */
   val stringify: UserDefinedFunction = udf((vs: Seq[String]) => vs match {
     case null => null
@@ -24,10 +26,10 @@ object AuditCountsUtil {
   /**
    * find invalid records (datatyping, range error items etc)
    *
-   * @param input: Input file path
-   * @param schema: Schema file path
-   * @param spark: sessio
-   * @return Invalid Dataframe
+   * @param input  : Input file path
+   * @param schema : Schema file path
+   * @param spark  : sessio
+   * @return: Invalid Dataframe
    */
   def findInvalid(input: String, schema: StructType, spark: SparkSession): DataFrame = {
 
@@ -45,7 +47,7 @@ object AuditCountsUtil {
 
     val invalidDf = nonErrDf.unionAll(errDf).except(nonErrDf.intersect(errDf))
 
-   invalidDf.withColumn("user", stringify(col("user")))
+    invalidDf.withColumn("user", stringify(col("user")))
       .select(
         col("event_id"),
         col("user"),
@@ -55,12 +57,12 @@ object AuditCountsUtil {
   }
 
   /**
-   * Find corrupt records. (Malformed, hence invalid json lines)
+   * Find corrupt records. (Malformed, invalid json lines etc)
    *
-   * @param input: Input file path
-   * @param schema: Schema file path
-   * @param spark: session
-   * @return Corrupt Dataframe
+   * @param input  : Input file path
+   * @param schema : Schema file path
+   * @param spark  : session
+   * @return: Corrupt Dataframe
    */
   def findCorrupt(input: String, schema: StructType, spark: SparkSession): DataFrame = {
 

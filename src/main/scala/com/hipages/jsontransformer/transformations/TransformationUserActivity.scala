@@ -4,13 +4,19 @@ import org.apache.spark.sql.DataFrame
 import org.apache.spark.sql.functions.{col, expr, split}
 
 /**
- * Accepts input dataframe as an argument and transforms it to the required format of
- * user_id 	time_stamp 	url_level1 	url_level2 	url_level3 	activity
- * https://stackoverflow.com/questions/46353360/use-length-function-in-substring-in-spark
+ * Accepts input dataframe as an argument and transforms it to table format
+ * {user_id 	time_stamp 	url_level1 	url_level2 	url_level3 	activity}
+ * ref:- https://stackoverflow.com/questions/46353360/use-length-function-in-substring-in-spark
  */
 object TransformationUserActivity {
 
+  /**
+   *
+   * @param df : receives input dataframe
+   * @return: returns transformed dataframe
+   */
   def transformDf(df: DataFrame): DataFrame = {
+
     df.withColumn("full_url", split(col("url"), "\\/"))
       .select(
         col("user.id").alias("user_id"),
