@@ -1,6 +1,7 @@
 package com.hipages.jsontransformer.utils
 
 import com.hipages.jsontransformer.constants.AppConstants
+import org.apache.log4j.{Level, Logger}
 import org.apache.spark.sql.{DataFrame, SparkSession}
 import org.apache.spark.sql.expressions.UserDefinedFunction
 import org.apache.spark.sql.functions.{col, udf}
@@ -13,6 +14,9 @@ import org.apache.spark.sql.types.StructType
  * in main dataframe
  */
 object AuditCountsUtil {
+
+  val log: Logger = Logger.getLogger(getClass)
+  log.setLevel(Level.INFO)
 
   /**
    * Converts struct to string type to be able to write as file
@@ -70,10 +74,12 @@ object AuditCountsUtil {
       .read
       .json(input)
 
-    fullDf
-      .select(
-        col("_corrupt_record").alias("corrupt_record"),
-        col("user")).filter("user is null")
-      .select(col("corrupt_record"))
+    if (fullDf.columns.size == 6) {
+      fullDf
+        .select(
+          col("_corrupt_record").alias("corrupt_record"),
+          col("user")).filter("user is null")
+        .select(col("corrupt_record"))
+    } else spark.emptyDataFrame
   }
 }

@@ -8,7 +8,6 @@ schemaPath=$4
 validate=$5
 
 chmod -R 777 $inpPath
-chmod -R 777 $targetPath
 chmod -R 777 $schemaPath
 chmod -R 777 $jarPath
 

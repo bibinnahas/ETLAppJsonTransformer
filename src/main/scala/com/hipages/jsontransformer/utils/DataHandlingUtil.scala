@@ -23,11 +23,18 @@ object DataHandlingUtil {
 
     if (validator == "validate") {
       val invalidDf = AuditCountsUtil.findInvalid(inputFile, schema, spark)
-      writeToFileAsCsv(invalidDf, outputFile + "/invalid/malformed")
+      if (invalidDf.count() > 0) {
+        writeToFileAsCsv(invalidDf, outputFile + "/invalid/malformed")
+      }
+      else {
+        log.info("No Malformed Records")
+      }
 
       val corruptDf = AuditCountsUtil.findCorrupt(inputFile, schema, spark)
-      writeToText(corruptDf.toDF(), outputFile + "/invalid/corrupt")
-      log.info("Json input validated for corrupt/malformed/invalid items")
+      if (corruptDf.columns.size == 6) {
+        writeToText(corruptDf.toDF(), outputFile + "/invalid/corrupt")
+        log.info("Json input validated for corrupt/malformed/invalid items")
+      } else log.info("No Corrupt Records")
     }
     else log.info("*** Count Validation Skipped ***")
   }
