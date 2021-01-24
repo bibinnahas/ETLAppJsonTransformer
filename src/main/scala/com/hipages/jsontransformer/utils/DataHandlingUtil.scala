@@ -31,7 +31,7 @@ object DataHandlingUtil {
       }
 
       val corruptDf = AuditCountsUtil.findCorrupt(inputFile, schema, spark)
-      if (corruptDf.columns.size == 6) {
+      if (corruptDf.columns.size == 1) {
         writeToText(corruptDf.toDF(), outputFile + "/invalid/corrupt")
         log.info("Json input validated for corrupt/malformed/invalid items")
       } else log.info("No Corrupt Records")
