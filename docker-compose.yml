@@ -4,7 +4,7 @@ services:
     build: ./
     command:
       [
-        "$SPARK_HOME/bin/spark-submit",
+        "/opt/spark/bin/spark-submit",
         "--class", "com.hipages.jsontransformer.entry.ETLMainApp",
         "/opt/jars/HipagesJsonTransformerETL-assembly-1.0.jar",
         "/opt/input/source_event_data.json",

@@ -31,9 +31,10 @@ The Application in its current state assumes the below
 - Docker, Spark, Git and jdk are setup and configured in environment
 - The various versions used while development are as below
     ```
-    scala - v2.12.11
-    spark - v3.0.0
-    sbt   - v1.3.8
+    scala  - v2.12.11
+    spark  - v3.0.0
+    sbt    - v1.3.8
+    docker - v19.03.8
     ```
 # How to Run
 ### Build/Setup Project
@@ -91,7 +92,7 @@ Use the below commands to build the project
     ```
 3. This triggers the spark job in a container, writes the output to disk and shuts down gracefully. Validate output in ./data/output/
 #### Method 2 - Using Shell Script
-1. Build the project as explained in the section "Build/Setup Project". 
+1. Build the project as explained in the section [Build Project](https://github.com/bibinnahas/ETLAppJsonTransformer#buildsetup-project) 
 2. Execute run_job.sh. This shell script internally calls a spark-submit job.
     ```
    chmod 777 ./scripts/run_job.sh
@@ -99,7 +100,7 @@ Use the below commands to build the project
    ```
 3. Check for output in ./data/output/ folder 
 #### Method 3 - Using Spark Submit
-1. Build the project as explained in the section "Build/Setup Project".
+1. Build the project as explained in the section [Build Project](https://github.com/bibinnahas/ETLAppJsonTransformer#buildsetup-project)
 2. Using spark-submit command on a spark cluster (Assumes $SPARK_HOME is set)
    ```
    sudo $SPARK_HOME/bin/spark-submit --class com.hipages.jsontransformer.entry.ETLMainApp --deploy-mode client --master local[*] jars/HipagesJsonTransformerETL-assembly-1.0.jar data/input/source_event_data.json data/output schema/source_data_schema.json no
