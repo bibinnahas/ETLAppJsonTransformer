@@ -6,10 +6,10 @@ services:
       [
         "/opt/spark/bin/spark-submit",
         "--class", "com.hipages.jsontransformer.entry.ETLMainApp",
-        "/opt/jars/HipagesJsonTransformerETL-assembly-1.0.jar",
-        "/opt/input/source_event_data.json",
+        "local:///opt/HipagesJsonTransformerETL-assembly-1.0.jar",
+        "/opt/source_event_data.json",
         "/usr/data/output/",
-        "/opt/schema/source_data_schema.json",
+        "/opt/source_data_schema.json",
         "validate"
       ]
     depends_on:
