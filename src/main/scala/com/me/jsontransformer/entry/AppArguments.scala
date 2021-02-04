@@ -1,4 +1,4 @@
-package com.hipages.jsontransformer.entry
+package com.me.jsontransformer.entry
 
 /**
  * Reading the input arguments as arguments in command line

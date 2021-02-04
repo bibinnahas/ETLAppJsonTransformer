@@ -1,4 +1,4 @@
-package com.hipages.jsontransformer.utils
+package com.me.jsontransformer.utils
 
 import org.apache.spark.sql.{DataFrame, SaveMode, SparkSession}
 import org.apache.spark.sql.types.StructType

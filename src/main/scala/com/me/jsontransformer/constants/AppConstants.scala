@@ -1,4 +1,4 @@
-package com.hipages.jsontransformer.constants
+package com.me.jsontransformer.constants
 
 /**
  * Constants required for the Application to run

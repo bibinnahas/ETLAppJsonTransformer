@@ -1,9 +1,9 @@
-package com.hipages.jsontransformer.transformationtest
+package com.me.jsontransformer.transformationtest
 
-import com.hipages.jsontransformer.constants.AppConstants
-import com.hipages.jsontransformer.utils.{AuditCountsUtil, DataHandlingUtil}
-import com.hipages.jsontransformer.transformations.{TransformationActivityCounts, TransformationUserActivity}
 import com.holdenkarau.spark.testing.SharedSparkContext
+import com.me.jsontransformer.constants.AppConstants
+import com.me.jsontransformer.transformations.{TransformationActivityCounts, TransformationUserActivity}
+import com.me.jsontransformer.utils.{AuditCountsUtil, DataHandlingUtil}
 import org.apache.spark.sql.SparkSession
 import org.scalatest.FunSuite
 
@@ -26,8 +26,8 @@ class ActivityTransformationTestSuccessScenario extends FunSuite with SharedSpar
     val spark: SparkSession = SparkSession.builder.master("local").getOrCreate
     import spark.implicits._
 
-    val inputFile = "/home/thesnibibin/Desktop/hipages/ETLAppJsonTransformer/src/test/resources/source_event_data_1_record.json"
-    val schemaFile = "/home/thesnibibin/Desktop/hipages/ETLAppJsonTransformer/src/test/resources/source_data_schema.json"
+    val inputFile = "src/test/resources/source_event_data_1_record.json"
+    val schemaFile = "src/test/resources/source_data_schema.json"
 
     val schema = DataHandlingUtil.getSchema(schemaFile)
     val inputDf = spark
@@ -52,8 +52,8 @@ class ActivityTransformationTestSuccessScenario extends FunSuite with SharedSpar
     val spark: SparkSession = SparkSession.builder.master("local").getOrCreate()
     import spark.implicits._
 
-    val inputFile = "/home/thesnibibin/Desktop/hipages/ETLAppJsonTransformer/src/test/resources/source_event_data_malformed_corrupt.json"
-    val schemaFile = "/home/thesnibibin/Desktop/hipages/ETLAppJsonTransformer/src/test/resources/source_data_schema_updated_datatype.json"
+    val inputFile = "src/test/resources/source_event_data_malformed_corrupt.json"
+    val schemaFile = "src/test/resources/source_data_schema_updated_datatype.json"
 
     val schema = DataHandlingUtil.getSchema(schemaFile)
     val inputDf = spark
@@ -79,8 +79,8 @@ class ActivityTransformationTestSuccessScenario extends FunSuite with SharedSpar
     val spark: SparkSession = SparkSession.builder.master("local").getOrCreate
     import spark.implicits._
 
-    val inputFile = "/home/thesnibibin/Desktop/hipages/ETLAppJsonTransformer/src/test/resources/source_event_data_err.json"
-    val schemaFile = "/home/thesnibibin/Desktop/hipages/ETLAppJsonTransformer/src/test/resources/source_data_schema_updated_datatype.json"
+    val inputFile = "src/test/resources/source_event_data_err.json"
+    val schemaFile = "src/test/resources/source_data_schema_updated_datatype.json"
 
     val schema = DataHandlingUtil.getSchema(schemaFile)
     val invalidDf = AuditCountsUtil.findInvalid(inputFile, schema, spark).collect()
@@ -100,8 +100,8 @@ class ActivityTransformationTestSuccessScenario extends FunSuite with SharedSpar
     val spark: SparkSession = SparkSession.builder.master("local").getOrCreate
     import spark.implicits._
 
-    val inputFile = "/home/thesnibibin/Desktop/hipages/ETLAppJsonTransformer/src/test/resources/source_event_data_err.json"
-    val schemaFile = "/home/thesnibibin/Desktop/hipages/ETLAppJsonTransformer/src/test/resources/source_data_schema_updated_datatype.json"
+    val inputFile = "src/test/resources/source_event_data_err.json"
+    val schemaFile = "src/test/resources/source_data_schema_updated_datatype.json"
 
     val schema = DataHandlingUtil.getSchema(schemaFile)
     val invalidDf = AuditCountsUtil.findCorrupt(inputFile, schema, spark).collect()
@@ -120,8 +120,8 @@ class ActivityTransformationTestSuccessScenario extends FunSuite with SharedSpar
     val spark: SparkSession = SparkSession.builder.master("local").getOrCreate
     import spark.implicits._
 
-    val inputFile = "/home/thesnibibin/Desktop/hipages/ETLAppJsonTransformer/src/test/resources/source_event_data_1_record.json"
-    val schemaFile = "/home/thesnibibin/Desktop/hipages/ETLAppJsonTransformer/src/test/resources/source_data_schema.json"
+    val inputFile = "src/test/resources/source_event_data_1_record.json"
+    val schemaFile = "src/test/resources/source_data_schema.json"
 
     val schema = DataHandlingUtil.getSchema(schemaFile)
     val inputDf = spark

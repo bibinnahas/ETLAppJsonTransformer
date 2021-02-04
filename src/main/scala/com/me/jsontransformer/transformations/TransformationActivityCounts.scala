@@ -1,4 +1,4 @@
-package com.hipages.jsontransformer.transformations
+package com.me.jsontransformer.transformations
 
 import org.apache.spark.sql.DataFrame
 import org.apache.spark.sql.functions._

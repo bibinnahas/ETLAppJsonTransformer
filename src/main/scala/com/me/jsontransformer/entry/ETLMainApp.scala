@@ -1,8 +1,8 @@
-package com.hipages.jsontransformer.entry
+package com.me.jsontransformer.entry
 
-import com.hipages.jsontransformer.constants.AppConstants
-import com.hipages.jsontransformer.transformations.{TransformationActivityCounts, TransformationUserActivity}
-import com.hipages.jsontransformer.utils.DataHandlingUtil
+import com.me.jsontransformer.constants.AppConstants
+import com.me.jsontransformer.transformations.{TransformationActivityCounts, TransformationUserActivity}
+import com.me.jsontransformer.utils.DataHandlingUtil
 import org.apache.spark.sql.SparkSession
 import org.apache.log4j.{Level, Logger}
 

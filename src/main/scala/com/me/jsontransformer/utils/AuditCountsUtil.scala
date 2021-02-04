@@ -1,6 +1,6 @@
-package com.hipages.jsontransformer.utils
+package com.me.jsontransformer.utils
 
-import com.hipages.jsontransformer.constants.AppConstants
+import com.me.jsontransformer.constants.AppConstants
 import org.apache.log4j.{Level, Logger}
 import org.apache.spark.sql.{DataFrame, SparkSession}
 import org.apache.spark.sql.expressions.UserDefinedFunction
