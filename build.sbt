@@ -1,4 +1,4 @@
-name := "HipagesJsonTransformerETL"
+name := "JsonTransformerETL"
 
 version := "1.0"
 
@@ -8,10 +8,10 @@ val sparkVersion = "3.0.0"
 
 lazy val root = (project in file(".")).
   settings(
-    name := "HipagesJsonTransformerETL",
+    name := "JsonTransformerETL",
     version := "1.0",
     scalaVersion := "2.12.11",
-    mainClass in Compile := Some("com.hipages.jsontransformer.entry.ETLMainApp")
+    mainClass in Compile := Some("com.me.jsontransformer.entry.ETLMainApp")
   )
 
 libraryDependencies ++= Seq(
