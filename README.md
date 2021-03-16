@@ -151,3 +151,7 @@ Given more time, we can think of adding the below functionalities
 - The v1.0 version is deployed using spark running on docker. The same application is also designed to run on a multi node cluster
 - Dockerizing the container enables easy deployment and makes the application highly portable
 - Spark environments can be configured to ensure great scalability and availability.
+
+##### PS: Final commit done on 16 March 2021
+- renamed project
+- hence renamed jar in deployment instructions and docker-compose
