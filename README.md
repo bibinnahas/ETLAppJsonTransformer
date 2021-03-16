@@ -58,7 +58,7 @@ Use the below commands to build the project
    ```
 - Copy jar to "jars" folder in project structure
    ```
-   mkdir -p jars && cp target/scala-2.12/HipagesJsonTransformerETL-assembly-1.0.jar jars/ && chmod -R 777 jars
+   mkdir -p jars && cp target/scala-2.12/JsonTransformerETL-assembly-1.0.jar jars/ && chmod -R 777 jars
    ```
 ### Running Application (with default parameters)
 - Post setting up and successfully packaging the application, use either of the 2 commands to execute

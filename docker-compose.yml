@@ -5,8 +5,8 @@ services:
     command:
       [
         "/opt/spark/bin/spark-submit",
-        "--class", "com.hipages.jsontransformer.entry.ETLMainApp",
-        "local:///opt/HipagesJsonTransformerETL-assembly-1.0.jar",
+        "--class", "com.me.jsontransformer.entry.ETLMainApp",
+        "local:///opt/JsonTransformerETL-assembly-1.0.jar",
         "/opt/source_event_data.json",
         "/usr/data/output/",
         "/opt/source_data_schema.json",
