@@ -12,6 +12,7 @@ import org.apache.spark.sql.types.StructType
  * this method validates the input json and writes malformed/invalid
  * records to disk. However, these records are dropped from further processing
  * in main dataframe
+ * Test commit
  */
 object AuditCountsUtil {
 
