@@ -54,7 +54,7 @@ Use the below commands to build the project
    ```
 - If successful, the jar should be in the below path
    ```
-   ls target/scala-2.12/HipagesJsonTransformerETL-assembly-1.0.jar
+   ls target/scala-2.12/JsonTransformerETL-assembly-1.0.jar
    ```
 - Copy jar to "jars" folder in project structure
    ```
@@ -79,7 +79,7 @@ Use the below commands to build the project
           [
             "$SPARK_HOME/bin/spark-submit",
             "--class", "com.hipages.jsontransformer.entry.ETLMainApp",
-            "/opt/jars/HipagesJsonTransformerETL-assembly-1.0.jar",
+            "/opt/jars/JsonTransformerETL-assembly-1.0.jar",
             "/opt/input/source_event_data.json", #change input here
             "/usr/data/output/", #change output folder here
             "/opt/schema/source_data_schema.json", #change schema path here
@@ -96,7 +96,7 @@ Use the below commands to build the project
 2. Execute run_job.sh. This shell script internally calls a spark-submit job.
     ```
    chmod 777 ./scripts/run_job.sh
-   sudo ./scripts/run_job.sh jars/HipagesJsonTransformerETL-assembly-1.0.jar data/input/source_event_data.json data/output schema/source_data_schema.json no
+   sudo ./scripts/run_job.sh jars/JsonTransformerETL-assembly-1.0.jar data/input/source_event_data.json data/output schema/source_data_schema.json no
    ```
 3. Check for output in ./data/output/ folder 
 #### Method 3 - Using Spark Submit
